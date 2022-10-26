@@ -1,0 +1,11 @@
+
+recursive-include iotprovision/fw *.hex *.zip
+recursive-include iotprovision/fw/winc *.bin
+recursive-include iotprovision/picpack *.py
+recursive-include iotprovision/aws_cf *.zip *.json
+include iotprovision/logging.yaml
+# This file is read in setup.py so it must be included in the source zip for pip to be able to install the zip
+# Note however that since the pypi.md file is not a part of the package (it is not inside the iotprovision sub folder)
+# it won't be included in the python wheel.
+include pypi.md
+

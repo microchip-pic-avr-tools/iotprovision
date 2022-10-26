@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Provisioning of Cellular kits &#8212; iotprovision  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/microchip.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="WINC functions" href="iotprovision.winc.html" />
+    <link rel="prev" title="Azure provisioning" href="iotprovision.azure.html" /> 
+  </head><body>
+    <header>
+        <div class="logo">
+            <a href="https://microchip.com" target="_blank">
+                <img src="_static/microchip.png" />
+            </a>
+        </div>
+    </header>
+
+    <div class="related-wrapper">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="iotprovision.winc.html" title="WINC functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="iotprovision.azure.html" title="Azure provisioning"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">iotprovision  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="iotprovision.html" accesskey="U">iotprovision package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Provisioning of Cellular kits</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="document">
+        
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Provisioning of Cellular kits</a><ul>
+<li><a class="reference internal" href="#module-iotprovision.cellular.cellularprovisioner">Cellular provisioning</a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.DEVICE_CERT_SLOT"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.DEVICE_CERT_SLOT</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.DEVICE_PRIVATEKEY_SLOT"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.DEVICE_PRIVATEKEY_SLOT</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.ROOT_CERT_SLOT"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.ROOT_CERT_SLOT</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.connect"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.connect()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.create_cert_chain"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.create_cert_chain()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.do_provision"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.do_provision()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.set_cellular_params"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.set_cellular_params()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.validate_int_list"><code class="docutils literal notranslate"><span class="pre">CellularProvisioner.validate_int_list()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.create_device_certs_ecc"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.create_device_certs_ecc()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.do_provision"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.do_provision()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.generate_certificates"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.generate_certificates()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.get_aws_endpoint"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.get_aws_endpoint()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.store_provisioning_data"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.store_provisioning_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsJitr"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAwsJitr</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsJitr.do_provision"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAwsJitr.do_provision()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsMar"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAwsMar</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsMar.do_provision"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAwsMar.do_provision()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAzure"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAzure</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerGoogle"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerGoogle</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.get_cellular_provisioner"><code class="docutils literal notranslate"><span class="pre">get_cellular_provisioner()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iotprovision.cellular.atprovisioner">Cellular provisioning using AT commands</a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.atprovisioner.AtProvisioner"><code class="docutils literal notranslate"><span class="pre">AtProvisioner</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.atprovisioner.AtProvisioner.erase_slot"><code class="docutils literal notranslate"><span class="pre">AtProvisioner.erase_slot()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.atprovisioner.AtProvisioner.get_firmware_versions"><code class="docutils literal notranslate"><span class="pre">AtProvisioner.get_firmware_versions()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.atprovisioner.AtProvisioner.set_frequency_bands"><code class="docutils literal notranslate"><span class="pre">AtProvisioner.set_frequency_bands()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.atprovisioner.AtProvisioner.set_provider"><code class="docutils literal notranslate"><span class="pre">AtProvisioner.set_provider()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.atprovisioner.AtProvisioner.set_security_profile"><code class="docutils literal notranslate"><span class="pre">AtProvisioner.set_security_profile()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.atprovisioner.AtProvisioner.write_slot"><code class="docutils literal notranslate"><span class="pre">AtProvisioner.write_slot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iotprovision.cellular.sequans_ciphersuites">Sequans Cipher Suites</a><ul>
+<li><a class="reference internal" href="#iotprovision.cellular.sequans_ciphersuites.get_ciphersuite"><code class="docutils literal notranslate"><span class="pre">get_ciphersuite()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.sequans_ciphersuites.print_ciphersuites"><code class="docutils literal notranslate"><span class="pre">print_ciphersuites()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.cellular.sequans_ciphersuites.validate_ciphersuites"><code class="docutils literal notranslate"><span class="pre">validate_ciphersuites()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="iotprovision.azure.html"
+                          title="previous chapter">Azure provisioning</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="iotprovision.winc.html"
+                          title="next chapter">WINC functions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/iotprovision.cellular.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+        <div class="documentwrapper">
+            <div class="bodywrapper">
+                <div class="body" role="main">
+                    
+  <section id="provisioning-of-cellular-kits">
+<h1>Provisioning of Cellular kits<a class="headerlink" href="#provisioning-of-cellular-kits" title="Permalink to this heading">¶</a></h1>
+<section id="module-iotprovision.cellular.cellularprovisioner">
+<span id="cellular-provisioning"></span><h2>Cellular provisioning<a class="headerlink" href="#module-iotprovision.cellular.cellularprovisioner" title="Permalink to this heading">¶</a></h2>
+<p>Cellular provisioning classes</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.cellularprovisioner.</span></span><span class="sig-name descname"><span class="pre">CellularProvisioner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programmer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_fw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner" title="iotprovision.provisioner.Provisioner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Provisioner</span></code></a></p>
+<p>This class implements provisioning for AVR-IoT Cellular kit. Its subclasses mirrors the structure of the
+Provisioner class hierarchy.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.DEVICE_CERT_SLOT">
+<span class="sig-name descname"><span class="pre">DEVICE_CERT_SLOT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18</span></em><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.DEVICE_CERT_SLOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.DEVICE_PRIVATEKEY_SLOT">
+<span class="sig-name descname"><span class="pre">DEVICE_PRIVATEKEY_SLOT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18</span></em><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.DEVICE_PRIVATEKEY_SLOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.ROOT_CERT_SLOT">
+<span class="sig-name descname"><span class="pre">ROOT_CERT_SLOT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">19</span></em><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.ROOT_CERT_SLOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.connect">
+<span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_programming</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement additional steps to synchronize with Sequans modem reset after initial FW programming/reset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function</strong> – Firmware function (eg. “iotprovision”) as defined</p></li>
+<li><p><strong>skip_programming</strong> – Skip programming FW.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.create_cert_chain">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_cert_chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certfiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.create_cert_chain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a certificate chain, basically a concatenation of PEM files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>certfiles</strong> – List of input certificate file names in PEM format.</p></li>
+<li><p><strong>outfile</strong> – Optional output file name for saving chain</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Certificate chain</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.do_provision">
+<span class="sig-name descname"><span class="pre">do_provision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force_new_device_certificate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_firmware</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.do_provision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Common part of Cellular provisioning, independent of cloud provider and method. Subclasses should
+override this and append their specific parts of provisioning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>force_new_device_certificate</strong> – Force creation of device certificates</p></li>
+<li><p><strong>skip_program_provision_firmware</strong> – Skip programming provisioning FW. Compatible FW
+must be programmed previously, this is user’s responsibility</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.set_cellular_params">
+<span class="sig-name descname"><span class="pre">set_cellular_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.set_cellular_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up Cellular specific parameters that cannot be passed in constructor due to protocol</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> – Parsed-out command-line arguments</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisioner.validate_int_list">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_int_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner.validate_int_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate list of integer values and convert to integer list.
+It is assumed all integers in list are in same base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> – String with comma-separated integers</p></li>
+<li><p><strong>valids</strong> – List of valid integer values</p></li>
+<li><p><strong>base</strong> – Base expected in input</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of strings representing values in selected base. Modem expects a
+specific base in list as a string, depending on command,
+and all values must be in same base (decimal, hex, …)</p>
+</dd>
+<dt class="field-odd">Raise<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ValueError if invalid values specified</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.cellularprovisioner.</span></span><span class="sig-name descname"><span class="pre">CellularProvisionerAws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programmer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_fw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner" title="iotprovision.cellular.cellularprovisioner.CellularProvisioner"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellularProvisioner</span></code></a></p>
+<p>AWS Microchip Sandbox provisioning mechanism for Cellular</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.create_device_certs_ecc">
+<span class="sig-name descname"><span class="pre">create_device_certs_ecc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device_cert_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer_cert_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.create_device_certs_ecc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create device and signer certificate from ECC, if not already existing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device_cert_file</strong> – Device certificate filename</p></li>
+<li><p><strong>signer_cert_file</strong> – Signer certificate filename</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thing name extracted from certificate</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.do_provision">
+<span class="sig-name descname"><span class="pre">do_provision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force_new_device_certificate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_firmware</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.do_provision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sandbox provisioning for AWS</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.generate_certificates">
+<span class="sig-name descname"><span class="pre">generate_certificates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_common_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signer_common_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.generate_certificates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate CA certificates
+Nothing to do for AWS Sandbox</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.get_aws_endpoint">
+<span class="sig-name descname"><span class="pre">get_aws_endpoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.get_aws_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get AWS endpoint when custom provisioning is used</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.store_provisioning_data">
+<span class="sig-name descname"><span class="pre">store_provisioning_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thingname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">endpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device_cert_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_ca_cert_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.store_provisioning_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save provisioning data to kit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>thingname</strong> – AWS thing name</p></li>
+<li><p><strong>endpoint</strong> – AWS endpoint</p></li>
+<li><p><strong>device_cert</strong> – Device certificate in PEM format</p></li>
+<li><p><strong>root_ca_cert</strong> – Root CA certificate, PEM format</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsJitr">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.cellularprovisioner.</span></span><span class="sig-name descname"><span class="pre">CellularProvisionerAwsJitr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programmer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_fw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsJitr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsJitr" title="iotprovision.provisioner.ProvisionerAwsJitr"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProvisionerAwsJitr</span></code></a>, <a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws" title="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellularProvisionerAws</span></code></a></p>
+<p>AWS JITR provisioning mechanism for Cellular</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsJitr.do_provision">
+<span class="sig-name descname"><span class="pre">do_provision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force_new_device_certificate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_firmware</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsJitr.do_provision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provisioning for AWS JITR</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsMar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.cellularprovisioner.</span></span><span class="sig-name descname"><span class="pre">CellularProvisionerAwsMar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programmer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_fw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsMar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsMar" title="iotprovision.provisioner.ProvisionerAwsMar"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProvisionerAwsMar</span></code></a>, <a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws" title="iotprovision.cellular.cellularprovisioner.CellularProvisionerAws"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellularProvisionerAws</span></code></a></p>
+<p>AWS MAR provisioning mechanism for Cellular</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsMar.do_provision">
+<span class="sig-name descname"><span class="pre">do_provision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force_new_device_certificate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_firmware</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAwsMar.do_provision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provisioning for AWS MAR</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerAzure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.cellularprovisioner.</span></span><span class="sig-name descname"><span class="pre">CellularProvisionerAzure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programmer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_fw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerAzure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner" title="iotprovision.cellular.cellularprovisioner.CellularProvisioner"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellularProvisioner</span></code></a></p>
+<p>Azure provisioning mechanisms for Cellular</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.CellularProvisionerGoogle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.cellularprovisioner.</span></span><span class="sig-name descname"><span class="pre">CellularProvisionerGoogle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programmer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_program_provision_fw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.CellularProvisionerGoogle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iotprovision.cellular.cellularprovisioner.CellularProvisioner" title="iotprovision.cellular.cellularprovisioner.CellularProvisioner"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellularProvisioner</span></code></a></p>
+<p>Google provisioning mechanism for Cellular</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.cellular.cellularprovisioner.get_cellular_provisioner">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.cellularprovisioner.</span></span><span class="sig-name descname"><span class="pre">get_cellular_provisioner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programmer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.cellularprovisioner.get_cellular_provisioner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolves the cellular provisioning algorithm requested by the user</p>
+</dd></dl>
+
+</section>
+<section id="module-iotprovision.cellular.atprovisioner">
+<span id="cellular-provisioning-using-at-commands"></span><h2>Cellular provisioning using AT commands<a class="headerlink" href="#module-iotprovision.cellular.atprovisioner" title="Permalink to this heading">¶</a></h2>
+<p>IoT provisioning API for Sequans modem
+Protocol port must be opened in advance</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.cellular.atprovisioner.AtProvisioner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.atprovisioner.</span></span><span class="sig-name descname"><span class="pre">AtProvisioner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fwinterface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.atprovisioner.AtProvisioner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>AtProvisioner class for Sequans modem. To manage bridge status automatically, instantiate this class using ‘with’:</p>
+<dl class="simple">
+<dt>with AtProvisioner(fwinterface) as atprovisioner:</dt><dd><p>…</p>
+</dd>
+</dl>
+<p>FW interface’s port must be opened in advance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fwinterface</strong> – Firmware interface</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.atprovisioner.AtProvisioner.erase_slot">
+<span class="sig-name descname"><span class="pre">erase_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datatype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.atprovisioner.AtProvisioner.erase_slot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erase a single slot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datatype</strong> – “certificate”, “privatekey”, or “strid” (don’t know what the latter is used for)</p></li>
+<li><p><strong>slot</strong> – Slot number to erase</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.atprovisioner.AtProvisioner.get_firmware_versions">
+<span class="sig-name descname"><span class="pre">get_firmware_versions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.atprovisioner.AtProvisioner.get_firmware_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get installed and bundled cellular modem firmware versions
+:return: (installed, bundled) firmware versions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.atprovisioner.AtProvisioner.set_frequency_bands">
+<span class="sig-name descname"><span class="pre">set_frequency_bands</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_bands</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.atprovisioner.AtProvisioner.set_frequency_bands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set frequency bands for given provider</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>provider</strong> – Network provider to select bands for</p></li>
+<li><p><strong>frequency_bands</strong> – List of frequency bands to scan</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.atprovisioner.AtProvisioner.set_provider">
+<span class="sig-name descname"><span class="pre">set_provider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.atprovisioner.AtProvisioner.set_provider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set network provider</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.atprovisioner.AtProvisioner.set_security_profile">
+<span class="sig-name descname"><span class="pre">set_security_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ciphersuites</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_ca</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">19</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_cert</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_key_storage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.atprovisioner.AtProvisioner.set_security_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up a security profile.</p>
+<p>TODO we can put cipher suite settings back once this is supported</p>
+<p>Note that if no ciphers are provided nothing should be printed in the
+command -&gt; no “”. This is a breaking change between 5.2 and 5.4 FW.</p>
+<p>FW 5.2 allowed AT+SQNSPCFG=1,3,””,3,1,1,1 but
+FW 5.4 requires AT+SQNSPCFG=1,3,,3,1,1,1
+FW 5.4.1.0-50495 for ECC support adds more parameters AT+SQNSPCFG=1,2,”0xc02c”,1,19,0,0,””,””,1</p>
+<p>+SQNSPCFG:&lt;spId&gt;,&lt;version&gt;,&lt;cipherSpecs&gt;,&lt;certValidLevel&gt;,&lt;caCertificateID&gt;,&lt;clientCertificateID&gt;,
+&lt;clientPrivateKeyID&gt;,&lt;psk&gt;,??,&lt;clientPrivateKeyStorage&gt;</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>spid</strong> (<em>int</em><em>, </em><em>optional</em>) – security profile identifier(1-6), defaults to 1</p></li>
+<li><p><strong>ciphersuites</strong> (<em>list</em><em>, </em><em>optional</em>) – set of ciphersuites, 0xc02b = ECDHE-ECDSA-AES128-GCM-SHA256, defaults to none</p></li>
+<li><p><strong>server_ca</strong> (<em>int</em><em>, </em><em>optional</em>) – Server CA certificate slot [0-19], defaults to 19</p></li>
+<li><p><strong>client_cert</strong> (<em>int</em><em>, </em><em>optional</em>) – Client certificate slot [0-19], defaults to 0</p></li>
+<li><p><strong>client_key</strong> (<em>int</em><em>, </em><em>optional</em>) – Client private key slot or key ID [0-19], defaults to 0</p></li>
+<li><p><strong>client_key_storage</strong> (<em>int</em><em>, </em><em>optional</em>) – Set to 1 for storage of private key in ECC and to 0 for storage in Sequans modem,
+defaults to 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.cellular.atprovisioner.AtProvisioner.write_slot">
+<span class="sig-name descname"><span class="pre">write_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datatype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cert</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.atprovisioner.AtProvisioner.write_slot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a certificate or private key to modem NVM slot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datatype</strong> – “certificate”, “privatekey”, or “strid” (don’t know what the latter is used for)</p></li>
+<li><p><strong>cert</strong> – Certificate or private key in PEM format</p></li>
+<li><p><strong>slot</strong> – Slot number to write to</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-iotprovision.cellular.sequans_ciphersuites">
+<span id="sequans-cipher-suites"></span><h2>Sequans Cipher Suites<a class="headerlink" href="#module-iotprovision.cellular.sequans_ciphersuites" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.cellular.sequans_ciphersuites.get_ciphersuite">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.sequans_ciphersuites.</span></span><span class="sig-name descname"><span class="pre">get_ciphersuite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cipher</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.sequans_ciphersuites.get_ciphersuite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provide value and name for a ciphersuite supported by Sequans modem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cipher</strong> – Name or integer value of a ciphersuite</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(value, name) tuple of strings representing found ciphersuite</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.cellular.sequans_ciphersuites.print_ciphersuites">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.sequans_ciphersuites.</span></span><span class="sig-name descname"><span class="pre">print_ciphersuites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.sequans_ciphersuites.print_ciphersuites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print list of supported ciphersuites</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.cellular.sequans_ciphersuites.validate_ciphersuites">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.cellular.sequans_ciphersuites.</span></span><span class="sig-name descname"><span class="pre">validate_ciphersuites</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ciphersuites</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.cellular.sequans_ciphersuites.validate_ciphersuites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate ciphersuites given as name or numeric (hex) value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ciphersuites</strong> – List of strings with ciphesrsuites (internal)
+or single string with comma-separated list of ciphersuites (CLI).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <div class="footer" role="contentinfo">
+            © Copyright 2021, Microchip Technology Inc
+        </div>
+    </div>
+  </body>
+</html>

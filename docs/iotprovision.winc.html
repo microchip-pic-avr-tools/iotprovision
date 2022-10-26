@@ -1,0 +1,1356 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>WINC functions &#8212; iotprovision  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/microchip.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Provisioning of Cellular kits" href="iotprovision.cellular.html" /> 
+  </head><body>
+    <header>
+        <div class="logo">
+            <a href="https://microchip.com" target="_blank">
+                <img src="_static/microchip.png" />
+            </a>
+        </div>
+    </header>
+
+    <div class="related-wrapper">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="iotprovision.cellular.html" title="Provisioning of Cellular kits"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">iotprovision  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="iotprovision.html" accesskey="U">iotprovision package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">WINC functions</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="document">
+        
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">WINC functions</a><ul>
+<li><a class="reference internal" href="#module-iotprovision.winc.pywinc_main">pywinc utility entry point</a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.build_client_certs"><code class="docutils literal notranslate"><span class="pre">build_client_certs()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.build_root_certs"><code class="docutils literal notranslate"><span class="pre">build_root_certs()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.decode_client_certs_storage"><code class="docutils literal notranslate"><span class="pre">decode_client_certs_storage()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.decode_root_certs_storage"><code class="docutils literal notranslate"><span class="pre">decode_root_certs_storage()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.pywinc"><code class="docutils literal notranslate"><span class="pre">pywinc()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.read_client_certs"><code class="docutils literal notranslate"><span class="pre">read_client_certs()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.read_root_certs"><code class="docutils literal notranslate"><span class="pre">read_root_certs()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.winc_fw_upgrade"><code class="docutils literal notranslate"><span class="pre">winc_fw_upgrade()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.write_client_certs_storage"><code class="docutils literal notranslate"><span class="pre">write_client_certs_storage()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.pywinc_main.write_root_certs_storage"><code class="docutils literal notranslate"><span class="pre">write_root_certs_storage()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iotprovision.winc.winc_certs">WINC certificates</a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert"><code class="docutils literal notranslate"><span class="pre">ClientCert</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.FILE_ADDRESS_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCert.FILE_ADDRESS_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.FILE_ENTRY_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCert.FILE_ENTRY_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.FILE_NAME_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCert.FILE_NAME_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.FILE_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCert.FILE_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.build_entry"><code class="docutils literal notranslate"><span class="pre">ClientCert.build_entry()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.file_blob_addr"><code class="docutils literal notranslate"><span class="pre">ClientCert.file_blob_addr</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.file_data"><code class="docutils literal notranslate"><span class="pre">ClientCert.file_data</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.file_flash_addr"><code class="docutils literal notranslate"><span class="pre">ClientCert.file_flash_addr</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.file_name"><code class="docutils literal notranslate"><span class="pre">ClientCert.file_name</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.file_size"><code class="docutils literal notranslate"><span class="pre">ClientCert.file_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.load_from_certificate"><code class="docutils literal notranslate"><span class="pre">ClientCert.load_from_certificate()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.load_from_ecdsa_list"><code class="docutils literal notranslate"><span class="pre">ClientCert.load_from_ecdsa_list()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCert.load_from_file_entry_blob"><code class="docutils literal notranslate"><span class="pre">ClientCert.load_from_file_entry_blob()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.CRC32_OFFSET"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.CRC32_OFFSET</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.CRC32_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.CRC32_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_COUNT_OFFSET"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.FILE_COUNT_OFFSET</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_COUNT_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.FILE_COUNT_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_ENTRIES_OFFSET"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.FILE_ENTRIES_OFFSET</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_ENTRIES_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.FILE_ENTRIES_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_STORAGE_OFFSET"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.FILE_STORAGE_OFFSET</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.MAX_FILE_ENTRIES"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.MAX_FILE_ENTRIES</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.MAX_NUMBER_OF_FILES"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.MAX_NUMBER_OF_FILES</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.NEXT_FILE_OFFSET"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.NEXT_FILE_OFFSET</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.NEXT_FILE_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.NEXT_FILE_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.START_PATTERN"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.START_PATTERN</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.START_PATTERN_SIZE"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.START_PATTERN_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_certificate"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.add_certificate()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_certificate_blob"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.add_certificate_blob()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_certificates"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.add_certificates()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_ecdsa_list"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.add_ecdsa_list()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.build"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.build()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.calculate_storage_size"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.calculate_storage_size()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.decode"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.decode()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.ClientCertStorage.storage_space_left"><code class="docutils literal notranslate"><span class="pre">ClientCertStorage.storage_space_left()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert"><code class="docutils literal notranslate"><span class="pre">RootCert</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.CERT_SIZE"><code class="docutils literal notranslate"><span class="pre">RootCert.CERT_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.KEY_TYPE_MAP"><code class="docutils literal notranslate"><span class="pre">RootCert.KEY_TYPE_MAP</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.SHA1_SIZE"><code class="docutils literal notranslate"><span class="pre">RootCert.SHA1_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.TIME_SIZE"><code class="docutils literal notranslate"><span class="pre">RootCert.TIME_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.build"><code class="docutils literal notranslate"><span class="pre">RootCert.build()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.decode"><code class="docutils literal notranslate"><span class="pre">RootCert.decode()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.length"><code class="docutils literal notranslate"><span class="pre">RootCert.length()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCert.load_from_certificate"><code class="docutils literal notranslate"><span class="pre">RootCert.load_from_certificate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage"><code class="docutils literal notranslate"><span class="pre">RootCertStorage</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.CERT_NUMBER_SIZE"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.CERT_NUMBER_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.START_PATTERN"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.START_PATTERN</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.START_PATTERN_SIZE"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.START_PATTERN_SIZE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.add_certificate"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.add_certificate()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.add_certificate_blob"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.add_certificate_blob()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.add_certificates"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.add_certificates()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.build"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.build()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_certs.RootCertStorage.decode"><code class="docutils literal notranslate"><span class="pre">RootCertStorage.decode()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iotprovision.winc.winc_flash_map">WINC flash memory map</a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap"><code class="docutils literal notranslate"><span class="pre">FlashMap</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.aws_endpoint_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.aws_endpoint_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.block_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.block_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.boot_fw_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.boot_fw_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.boot_fw_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.boot_fw_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.cached_conns_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.cached_conns_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.cached_conns_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.cached_conns_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.control_section_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.control_section_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.control_section_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.control_section_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.firmware_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.firmware_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.firmware_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.firmware_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.gain_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.gain_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.gain_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.gain_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.http_mem_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.http_mem_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.http_mem_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.http_mem_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.ota_fw_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.ota_fw_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.ota_fw_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.ota_fw_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.page_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.page_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.pll_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.pll_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.pll_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.pll_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.sector_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.sector_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.start_addr"><code class="docutils literal notranslate"><span class="pre">FlashMap.start_addr</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.thing_name_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.thing_name_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.thing_name_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.thing_name_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_root_cert_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.tls_root_cert_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_root_cert_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.tls_root_cert_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_server_offset"><code class="docutils literal notranslate"><span class="pre">FlashMap.tls_server_offset</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_server_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.tls_server_size</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.FlashMap.total_flash_size"><code class="docutils literal notranslate"><span class="pre">FlashMap.total_flash_size</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.winc_flash_map.print_flash_map"><code class="docutils literal notranslate"><span class="pre">print_flash_map()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-iotprovision.winc.wincupgrade">WINC upgrade</a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.ProgressLogger"><code class="docutils literal notranslate"><span class="pre">ProgressLogger</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.ProgressLogger.log"><code class="docutils literal notranslate"><span class="pre">ProgressLogger.log()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade"><code class="docutils literal notranslate"><span class="pre">WincUpgrade</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.check_bridge"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.check_bridge()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.erase_flash"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.erase_flash()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.erase_sector"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.erase_sector()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.read_firmware_version"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.read_firmware_version()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.read_flash"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.read_flash()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.read_sector"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.read_sector()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.reset"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.reset()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.upgrade_full_image"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.upgrade_full_image()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.verify_flash"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.verify_flash()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.write_flash"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.write_flash()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.write_sector"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.write_sector()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgrade.write_tls_root_certificate_sector"><code class="docutils literal notranslate"><span class="pre">WincUpgrade.write_tls_root_certificate_sector()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeCmdRsp</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp.send_receive_read"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeCmdRsp.send_receive_read()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp.send_receive_write"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeCmdRsp.send_receive_write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink</span></code></a><ul>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.ERASE_SECTOR"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.ERASE_SECTOR</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_FW_VER"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.READ_FW_VER</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_PAGE"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.READ_PAGE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_SECTOR"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.READ_SECTOR</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WINC_RESET"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.WINC_RESET</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WRITE_PAGE"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.WRITE_PAGE</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WRITE_SECTOR"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.WRITE_SECTOR</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.erase_sector"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.erase_sector()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_command"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.read_command()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_firmware_version"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.read_firmware_version()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_page"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.read_page()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_sector"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.read_sector()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.reset"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.reset()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_command"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.write_command()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_page"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.write_page()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_sector"><code class="docutils literal notranslate"><span class="pre">WincUpgradeBridgeLink.write_sector()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iotprovision.winc.wincupgrade.WincUpgradeError"><code class="docutils literal notranslate"><span class="pre">WincUpgradeError</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="iotprovision.cellular.html"
+                          title="previous chapter">Provisioning of Cellular kits</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/iotprovision.winc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+        <div class="documentwrapper">
+            <div class="bodywrapper">
+                <div class="body" role="main">
+                    
+  <section id="winc-functions">
+<h1>WINC functions<a class="headerlink" href="#winc-functions" title="Permalink to this heading">¶</a></h1>
+<section id="module-iotprovision.winc.pywinc_main">
+<span id="pywinc-utility-entry-point"></span><h2>pywinc utility entry point<a class="headerlink" href="#module-iotprovision.winc.pywinc_main" title="Permalink to this heading">¶</a></h2>
+<p>Main pywinc tool functions</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.build_client_certs">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">build_client_certs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode_print</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.build_client_certs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a client certificate storage object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<em>Array with file</em><em> or </em><em>directory names</em>) – Certificates to include in the storage object.</p></li>
+<li><p><strong>decode_print</strong> (<em>bool</em><em>, </em><em>optional</em>) – Print storage object in a readable format, defaults to False</p></li>
+<li><p><strong>outfile</strong> (<em>String</em><em>, </em><em>optional</em>) – File name of the file where the storage object should be stored, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.build_root_certs">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">build_root_certs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode_print</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.build_root_certs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a root certificate storage object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>files</strong> (<em>Array with file</em><em> or </em><em>directory names</em>) – Certificates to include in the storage object.</p></li>
+<li><p><strong>decode_print</strong> (<em>bool</em><em>, </em><em>optional</em>) – Print storage object in a readable format, defaults to False</p></li>
+<li><p><strong>outfile</strong> (<em>String</em><em>, </em><em>optional</em>) – File name of the file where the storage object should be stored, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.decode_client_certs_storage">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">decode_client_certs_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.decode_client_certs_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode and print a client storage object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>files</strong> (<em>String</em>) – Storage object file name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.decode_root_certs_storage">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">decode_root_certs_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.decode_root_certs_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode and print a root storage object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>String</em>) – Storage file name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.pywinc">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">pywinc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.pywinc" title="Permalink to this definition">¶</a></dt>
+<dd><p>WINC tool CLI commands handler</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>object</em>) – Command line arguments (argparse output)</p></li>
+<li><p><strong>logging_level</strong> (<em>Int</em>) – Logging level from logger module e.g. logging.INFO</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Status. STATUS_SUCCESS=0 or STATUS_ERROR=1</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.read_client_certs">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">read_client_certs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode_print</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.read_client_certs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read client storage from WINC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<em>String</em>) – Serial port to use for the operation e.g. COM5</p></li>
+<li><p><strong>decode_print</strong> (<em>bool</em><em>, </em><em>optional</em>) – Print storage object in a readable format, defaults to False</p></li>
+<li><p><strong>outfile</strong> (<em>String</em><em>, </em><em>optional</em>) – File in which the storage object should be stored, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.read_root_certs">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">read_root_certs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decode_print</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.read_root_certs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read root certificate storage from WINC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<em>String</em>) – Serial port to use for the operation e.g. COM5</p></li>
+<li><p><strong>decode_print</strong> (<em>bool</em><em>, </em><em>optional</em>) – Print the storage object in a readable format, defaults to False</p></li>
+<li><p><strong>outfile</strong> (<em>String</em><em>, </em><em>optional</em>) – File in which the storage object should be stored, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.winc_fw_upgrade">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">winc_fw_upgrade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.winc_fw_upgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upgrade WINC FW</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<em>String</em>) – Serial port to use for the operation e.g. COM5</p></li>
+<li><p><strong>file</strong> (<em>String</em>) – WINC FW image file name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.write_client_certs_storage">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">write_client_certs_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.write_client_certs_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a client certificate storage object to WINC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<em>String</em>) – Serial port to use for the operation e.g. COM5</p></li>
+<li><p><strong>file</strong> (<em>String</em>) – Storage object file name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.pywinc_main.write_root_certs_storage">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.pywinc_main.</span></span><span class="sig-name descname"><span class="pre">write_root_certs_storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.pywinc_main.write_root_certs_storage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a root certificate storage object to WINC</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<em>String</em>) – Serial port to use for the operation e.g. COM5</p></li>
+<li><p><strong>file</strong> (<em>String</em>) – Storage object file name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 for success and 1 for failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-iotprovision.winc.winc_certs">
+<span id="winc-certificates"></span><h2>WINC certificates<a class="headerlink" href="#module-iotprovision.winc.winc_certs" title="Permalink to this heading">¶</a></h2>
+<p>This module handles the WINC FW and certificate upgrade.</p>
+<p>Features:</p>
+<ul class="simple">
+<li><p>Update the WINC FW</p></li>
+<li><p>Build root certificate storage and upgrade WINC with it</p></li>
+<li><p>Build client file storage and upgrade WINC with it</p></li>
+<li><p>Read root certificate storage from WINC</p></li>
+<li><p>Read client file storage from WINC</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.winc_certs.</span></span><span class="sig-name descname"><span class="pre">ClientCert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'certificate'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>WINC client certificate storage file object.</p>
+<p>Represents one file entry in WINC client certificate storage.</p>
+<p>File name is:
+crt _ + serial number in certificate (16 bytes) = total 20 bytes (21 with string termination)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.FILE_ADDRESS_SIZE">
+<span class="sig-name descname"><span class="pre">FILE_ADDRESS_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.FILE_ADDRESS_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.FILE_ENTRY_SIZE">
+<span class="sig-name descname"><span class="pre">FILE_ENTRY_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">56</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.FILE_ENTRY_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.FILE_NAME_SIZE">
+<span class="sig-name descname"><span class="pre">FILE_NAME_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">48</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.FILE_NAME_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.FILE_SIZE">
+<span class="sig-name descname"><span class="pre">FILE_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.FILE_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.build_entry">
+<span class="sig-name descname"><span class="pre">build_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.build_entry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.file_blob_addr">
+<span class="sig-name descname"><span class="pre">file_blob_addr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.file_blob_addr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.file_data">
+<span class="sig-name descname"><span class="pre">file_data</span></span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.file_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.file_flash_addr">
+<span class="sig-name descname"><span class="pre">file_flash_addr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.file_flash_addr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.file_name">
+<span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.file_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.file_size">
+<span class="sig-name descname"><span class="pre">file_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.file_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.load_from_certificate">
+<span class="sig-name descname"><span class="pre">load_from_certificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.load_from_certificate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.load_from_ecdsa_list">
+<span class="sig-name descname"><span class="pre">load_from_ecdsa_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ecdsa_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.load_from_ecdsa_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCert.load_from_file_entry_blob">
+<span class="sig-name descname"><span class="pre">load_from_file_entry_blob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCert.load_from_file_entry_blob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a file entry from the client certificate store</p>
+<p>A file entry is stored like this in WINC:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bytes | C Type                 | Description
+--------------------------------------------------------
+48    | char                   | File name
+4     | uint32_t little endian | File size
+4     | uint32_t little endian | Start address of the certificate (not aligned on a 32-bit word boundary, at least what we read out was not)
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blob</strong> (<em>bytes/bytearray</em>) – Raw bytes of the file entry</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.winc_certs.</span></span><span class="sig-name descname"><span class="pre">ClientCertStorage</span></span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Client certificate storage object</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.CRC32_OFFSET">
+<span class="sig-name descname"><span class="pre">CRC32_OFFSET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">464</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.CRC32_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.CRC32_SIZE">
+<span class="sig-name descname"><span class="pre">CRC32_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.CRC32_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.FILE_COUNT_OFFSET">
+<span class="sig-name descname"><span class="pre">FILE_COUNT_OFFSET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_COUNT_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.FILE_COUNT_SIZE">
+<span class="sig-name descname"><span class="pre">FILE_COUNT_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_COUNT_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.FILE_ENTRIES_OFFSET">
+<span class="sig-name descname"><span class="pre">FILE_ENTRIES_OFFSET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_ENTRIES_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.FILE_ENTRIES_SIZE">
+<span class="sig-name descname"><span class="pre">FILE_ENTRIES_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">448</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_ENTRIES_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.FILE_STORAGE_OFFSET">
+<span class="sig-name descname"><span class="pre">FILE_STORAGE_OFFSET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">468</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.FILE_STORAGE_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.MAX_FILE_ENTRIES">
+<span class="sig-name descname"><span class="pre">MAX_FILE_ENTRIES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.MAX_FILE_ENTRIES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.MAX_NUMBER_OF_FILES">
+<span class="sig-name descname"><span class="pre">MAX_NUMBER_OF_FILES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.MAX_NUMBER_OF_FILES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.NEXT_FILE_OFFSET">
+<span class="sig-name descname"><span class="pre">NEXT_FILE_OFFSET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.NEXT_FILE_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.NEXT_FILE_SIZE">
+<span class="sig-name descname"><span class="pre">NEXT_FILE_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.NEXT_FILE_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.START_PATTERN">
+<span class="sig-name descname"><span class="pre">START_PATTERN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">b'\xab\xfe\x18[p\xc3F\x92'</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.START_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.START_PATTERN_SIZE">
+<span class="sig-name descname"><span class="pre">START_PATTERN_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.START_PATTERN_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.add_certificate">
+<span class="sig-name descname"><span class="pre">add_certificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_certificate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a certificate from named file to the store</p>
+<p>The certificate can be in DER or PEM format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificate_file</strong> (<em>String</em>) – Certificate file name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.add_certificate_blob">
+<span class="sig-name descname"><span class="pre">add_certificate_blob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_certificate_blob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a certificate memory blob to the store</p>
+<p>The certificate can be in DER or PEM format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificate</strong> (<em>bytes</em>) – Certificate blob</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.add_certificates">
+<span class="sig-name descname"><span class="pre">add_certificates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_certificates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add certificates to the store</p>
+<p>Certificates can be in DER or PEM format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificates</strong> (<em>List</em><em> or </em><em>array</em>) – List of certificate file names</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.add_ecdsa_list">
+<span class="sig-name descname"><span class="pre">add_ecdsa_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.add_ecdsa_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the ECDSA file list and append to the store</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the storage object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Storage object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Bytearray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.calculate_storage_size">
+<span class="sig-name descname"><span class="pre">calculate_storage_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.calculate_storage_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the size of the storage</p>
+<p>Calculate the size of the current storage based on items that are currently added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size in bytes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a storage object</p>
+<p>TLS client files storage header:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bytes | C Type                 | Description
+----------------------------------------------------------------------
+8     | uint8_t                | TLS client files start pattern is {0xAB, 0xFE, 0x18, 0x5B, 0x70, 0xC3, 0x46, 0x92}
+4     | uint32_t little endian | Number of files in the blob
+4     | uint32_t little endian | Next write address relative to blob start or flash start? when adding a new file. This is the end of the blob aligned on a 32-bit word address.
+...   | struct                 | File entries. Max 8 files are allowed by WINC
+4     | uint32_t little endian | CRC32 of the whole blob
+...   | uint8_t                | Files (Certificates should be in DER format)
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blob</strong> (<em>bytes/bytearray</em>) – TLS client storage bytes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.ClientCertStorage.storage_space_left">
+<span class="sig-name descname"><span class="pre">storage_space_left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.ClientCertStorage.storage_space_left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate space left in WINC flash when current storage is programmed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Space left in WINC in bytes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.winc_certs.</span></span><span class="sig-name descname"><span class="pre">RootCert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Root certificate entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Root certificate instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>object</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.CERT_SIZE">
+<span class="sig-name descname"><span class="pre">CERT_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">44</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.CERT_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.KEY_TYPE_MAP">
+<span class="sig-name descname"><span class="pre">KEY_TYPE_MAP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'EC':</span> <span class="pre">2,</span> <span class="pre">'RSA':</span> <span class="pre">1}</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.KEY_TYPE_MAP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.SHA1_SIZE">
+<span class="sig-name descname"><span class="pre">SHA1_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.SHA1_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.TIME_SIZE">
+<span class="sig-name descname"><span class="pre">TIME_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.TIME_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the root certificate entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Binary blob of the root certificate entry</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bytearray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">certs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes root certificate entries</p>
+<p>Each root CA entry in the storage blob is built up like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bytes  | C Type   | Description
+-      -          -
+20     | uint8_t  | SHA1 of certificate issuer name
+Certificate issue date
+2      | uint16_t | Year
+1      | uint8_t  | Month
+1      | uint8_t  | Day
+1      | uint8_t  | Hour
+1      | uint8_t  | Minute
+1      | uint8_t  | Second
+1      | uint8_t  | Padding byte to align on 32-bit word boundary
+Certificat expiry date
+2      | uint16_t | Year
+1      | uint8_t  | Month
+1      | uint8_t  | Day
+1      | uint8_t  | Hour
+1      | uint8_t  | Minute
+1      | uint8_t  | Second
+1      | uint8_t  | Padding byte to align on 32-bit word boundary
+Key information
+4      | uint32_t | Key info type (1=RSA, 2=ECC)
+2      | uint16_t | ECC curve ID / RSA modulo size
+2      | uint16_t | ECC EC coordinate size / RSA exponent size
+Key
+[..]   | uint8_t  | ECC x = 2 * EC coordinate size; RSA x = modulo size + exponent size
+[..]   | uint8_t  | Padding bytes to align on 32-bit word boundary
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>blob</strong> (<em>bytearray</em><em>(</em><em>)</em>) – Binary data containing the root CA entries</p></li>
+<li><p><strong>count</strong> (<em>integer</em>) – Number of entries to decode in blob</p></li>
+<li><p><strong>certs</strong> (<em>array</em>) – An array of RootCert objects will be returned here after decoding</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.length">
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the length of the root certificate entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Length of the entry</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCert.load_from_certificate">
+<span class="sig-name descname"><span class="pre">load_from_certificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCert.load_from_certificate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the root certificate storage entry from a certificate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificate</strong> (<em>x509.certificate from cryptography package</em>) – Certificate</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.winc_certs.</span></span><span class="sig-name descname"><span class="pre">RootCertStorage</span></span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Root certificates storage object.</p>
+<p>The root certificate store is built up like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bytes      | C Type   | Description
+-          -          -
+16         | uint8_t  | Start pattern
+4          | uint32_t | Number of certificates in the store
+xx         | struct   | Root certificate entry
+..
+xx         | sturct   | Root certificate entry
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Root certificate storage object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>RootCertStorage instance</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.CERT_NUMBER_SIZE">
+<span class="sig-name descname"><span class="pre">CERT_NUMBER_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.CERT_NUMBER_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.START_PATTERN">
+<span class="sig-name descname"><span class="pre">START_PATTERN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">b'\x11\xf1\x12\xf2\x13\xf3\x14\xf4\x15\xf5\x16\xf6\x17\xf7\x18\xf8'</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.START_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.START_PATTERN_SIZE">
+<span class="sig-name descname"><span class="pre">START_PATTERN_SIZE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.START_PATTERN_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.add_certificate">
+<span class="sig-name descname"><span class="pre">add_certificate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.add_certificate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a certificate to the store</p>
+<p>The certificate can be in DER or PEM format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificate_file</strong> – File name of the certificate</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.add_certificate_blob">
+<span class="sig-name descname"><span class="pre">add_certificate_blob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">certificate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.add_certificate_blob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a certificate memory blob to the store</p>
+<p>The certificate can be in DER or PEM format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>certificate</strong> (<em>bytes</em>) – Certificate blob</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.add_certificates">
+<span class="sig-name descname"><span class="pre">add_certificates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.add_certificates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a root certificates to the store</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>clist</strong> (<em>list</em>) – List of root certificate file names that should be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a root certificate binary blob</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Root certificate storage image</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bytearray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_certs.RootCertStorage.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_certs.RootCertStorage.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a root certificate store.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blob</strong> (<em>bytes</em><em> or </em><em>bytearray</em>) – Root certificate binary blob</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-iotprovision.winc.winc_flash_map">
+<span id="winc-flash-memory-map"></span><h2>WINC flash memory map<a class="headerlink" href="#module-iotprovision.winc.winc_flash_map" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.winc_flash_map.</span></span><span class="sig-name descname"><span class="pre">FlashMap</span></span><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.aws_endpoint_offset">
+<span class="sig-name descname"><span class="pre">aws_endpoint_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">28160</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.aws_endpoint_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.block_size">
+<span class="sig-name descname"><span class="pre">block_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.block_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.boot_fw_offset">
+<span class="sig-name descname"><span class="pre">boot_fw_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.boot_fw_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.boot_fw_size">
+<span class="sig-name descname"><span class="pre">boot_fw_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.boot_fw_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.cached_conns_offset">
+<span class="sig-name descname"><span class="pre">cached_conns_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">36864</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.cached_conns_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.cached_conns_size">
+<span class="sig-name descname"><span class="pre">cached_conns_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.cached_conns_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.control_section_offset">
+<span class="sig-name descname"><span class="pre">control_section_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.control_section_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.control_section_size">
+<span class="sig-name descname"><span class="pre">control_section_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.control_section_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.firmware_offset">
+<span class="sig-name descname"><span class="pre">firmware_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">40960</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.firmware_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.firmware_size">
+<span class="sig-name descname"><span class="pre">firmware_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">241664</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.firmware_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.gain_offset">
+<span class="sig-name descname"><span class="pre">gain_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13312</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.gain_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.gain_size">
+<span class="sig-name descname"><span class="pre">gain_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3072</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.gain_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.http_mem_offset">
+<span class="sig-name descname"><span class="pre">http_mem_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">28672</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.http_mem_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.http_mem_size">
+<span class="sig-name descname"><span class="pre">http_mem_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.http_mem_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.ota_fw_offset">
+<span class="sig-name descname"><span class="pre">ota_fw_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">282624</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.ota_fw_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.ota_fw_size">
+<span class="sig-name descname"><span class="pre">ota_fw_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">241664</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.ota_fw_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.page_size">
+<span class="sig-name descname"><span class="pre">page_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.page_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.pll_offset">
+<span class="sig-name descname"><span class="pre">pll_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12288</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.pll_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.pll_size">
+<span class="sig-name descname"><span class="pre">pll_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.pll_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.sector_size">
+<span class="sig-name descname"><span class="pre">sector_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.sector_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.start_addr">
+<span class="sig-name descname"><span class="pre">start_addr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.start_addr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.thing_name_offset">
+<span class="sig-name descname"><span class="pre">thing_name_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">28416</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.thing_name_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.thing_name_size">
+<span class="sig-name descname"><span class="pre">thing_name_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">42</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.thing_name_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.tls_root_cert_offset">
+<span class="sig-name descname"><span class="pre">tls_root_cert_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16384</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_root_cert_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.tls_root_cert_size">
+<span class="sig-name descname"><span class="pre">tls_root_cert_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_root_cert_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.tls_server_offset">
+<span class="sig-name descname"><span class="pre">tls_server_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20480</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_server_offset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.tls_server_size">
+<span class="sig-name descname"><span class="pre">tls_server_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.tls_server_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.FlashMap.total_flash_size">
+<span class="sig-name descname"><span class="pre">total_flash_size</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1048576</span></em><a class="headerlink" href="#iotprovision.winc.winc_flash_map.FlashMap.total_flash_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iotprovision.winc.winc_flash_map.print_flash_map">
+<span class="sig-prename descclassname"><span class="pre">iotprovision.winc.winc_flash_map.</span></span><span class="sig-name descname"><span class="pre">print_flash_map</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.winc_flash_map.print_flash_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-iotprovision.winc.wincupgrade">
+<span id="winc-upgrade"></span><h2>WINC upgrade<a class="headerlink" href="#module-iotprovision.winc.wincupgrade" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.ProgressLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.wincupgrade.</span></span><span class="sig-name descname"><span class="pre">ProgressLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_percents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.ProgressLogger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple progress logger</p>
+<p>Logs progress using logging module.
+The ProgressLogger will log a message every step_percents until current_value reaches range
+Example: Progress logger for a function writing to a memory with 256 pages, logging a message for every 10%</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">progresslogger</span> <span class="o">=</span> <span class="n">ProgressLogger</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;written&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">page_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">256</span><span class="p">):</span>
+    <span class="n">writePage</span><span class="p">()</span>
+    <span class="n">progresslogger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">page_index</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code> object) – logger object, typically fetched using logging.getLogger()</p></li>
+<li><p><strong>start</strong> (<em>int</em><em> of </em><em>float</em>) – start value</p></li>
+<li><p><strong>end</strong> (<em>int</em><em> or </em><em>float</em>) – end value</p></li>
+<li><p><strong>step_percents</strong> (<em>int</em><em>, </em><em>optional</em>) – step size for logging, i.e. logging will only happen every step_percents, defaults to 10</p></li>
+<li><p><strong>msg</strong> (<em>str</em><em>, </em><em>optional</em>) – progress message to be appended after the percentage output, defaults to “”</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.ProgressLogger.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">absolute_progress</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.ProgressLogger.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log current progress</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>absolute_progress</strong> (<em>int</em><em> or </em><em>float</em>) – current progress</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.wincupgrade.</span></span><span class="sig-name descname"><span class="pre">WincUpgrade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">logging.INFO</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.check_bridge">
+<span class="sig-name descname"><span class="pre">check_bridge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.check_bridge" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.erase_flash">
+<span class="sig-name descname"><span class="pre">erase_flash</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.erase_flash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.erase_sector">
+<span class="sig-name descname"><span class="pre">erase_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sector_offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.erase_sector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.read_firmware_version">
+<span class="sig-name descname"><span class="pre">read_firmware_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.read_firmware_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.read_flash">
+<span class="sig-name descname"><span class="pre">read_flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numbytes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.read_flash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.read_sector">
+<span class="sig-name descname"><span class="pre">read_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sector_offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.read_sector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.upgrade_full_image">
+<span class="sig-name descname"><span class="pre">upgrade_full_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.upgrade_full_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do the upgrade by erasing and writing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.verify_flash">
+<span class="sig-name descname"><span class="pre">verify_flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.verify_flash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.write_flash">
+<span class="sig-name descname"><span class="pre">write_flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.write_flash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.write_sector">
+<span class="sig-name descname"><span class="pre">write_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sector_offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.write_sector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgrade.write_tls_root_certificate_sector">
+<span class="sig-name descname"><span class="pre">write_tls_root_certificate_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgrade.write_tls_root_certificate_sector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.wincupgrade.</span></span><span class="sig-name descname"><span class="pre">WincUpgradeBridgeCmdRsp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Command/response generator for WINC upgrade bridge</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp.send_receive_read">
+<span class="sig-name descname"><span class="pre">send_receive_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rsp_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp.send_receive_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a READ command and receive the response</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cmd</strong> – read request to send</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>response received</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp.send_receive_write">
+<span class="sig-name descname"><span class="pre">send_receive_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeCmdRsp.send_receive_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a WRITE command and receive the response</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cmd</strong> – write request to send</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.wincupgrade.</span></span><span class="sig-name descname"><span class="pre">WincUpgradeBridgeLink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Read / write link driver for Winc1500</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.ERASE_SECTOR">
+<span class="sig-name descname"><span class="pre">ERASE_SECTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.ERASE_SECTOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_FW_VER">
+<span class="sig-name descname"><span class="pre">READ_FW_VER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_FW_VER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_PAGE">
+<span class="sig-name descname"><span class="pre">READ_PAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_PAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_SECTOR">
+<span class="sig-name descname"><span class="pre">READ_SECTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.READ_SECTOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WINC_RESET">
+<span class="sig-name descname"><span class="pre">WINC_RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WINC_RESET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WRITE_PAGE">
+<span class="sig-name descname"><span class="pre">WRITE_PAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WRITE_PAGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WRITE_SECTOR">
+<span class="sig-name descname"><span class="pre">WRITE_SECTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.WRITE_SECTOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.erase_sector">
+<span class="sig-name descname"><span class="pre">erase_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.erase_sector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_command">
+<span class="sig-name descname"><span class="pre">read_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_firmware_version">
+<span class="sig-name descname"><span class="pre">read_firmware_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_firmware_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_page">
+<span class="sig-name descname"><span class="pre">read_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_page" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_sector">
+<span class="sig-name descname"><span class="pre">read_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.read_sector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_command">
+<span class="sig-name descname"><span class="pre">write_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_page">
+<span class="sig-name descname"><span class="pre">write_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_page" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_sector">
+<span class="sig-name descname"><span class="pre">write_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeBridgeLink.write_sector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="iotprovision.winc.wincupgrade.WincUpgradeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iotprovision.winc.wincupgrade.</span></span><span class="sig-name descname"><span class="pre">WincUpgradeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.winc.wincupgrade.WincUpgradeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>WINC upgrade specific exception</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <div class="footer" role="contentinfo">
+            © Copyright 2021, Microchip Technology Inc
+        </div>
+    </div>
+  </body>
+</html>

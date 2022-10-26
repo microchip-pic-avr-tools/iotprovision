@@ -1,0 +1,19 @@
+# External packages
+pytz
+boto3>=1.15.2
+cryptography
+pyOpenSSL
+packaging>=20.0
+pyyaml
+appdirs
+
+# Microchip packages
+pyedbglib>=2.22.*
+pymcuprog>=3.7.*
+pydebuggerupgrade>=3.4.*
+pykitcommander>=2.7.2.*
+pytrustplatform>=0.15.*
+pyawsutils>=1.1.0.7*
+pyazureutils>=0.8.*
+pydebuggerconfig>=3.8.3.*
+pysequansutils>=2.1.1.*

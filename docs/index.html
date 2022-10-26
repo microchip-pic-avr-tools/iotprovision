@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>iotprovision documentation &#8212; iotprovision  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/microchip.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="iotprovision package" href="iotprovision.html" /> 
+  </head><body>
+    <header>
+        <div class="logo">
+            <a href="https://microchip.com" target="_blank">
+                <img src="_static/microchip.png" />
+            </a>
+        </div>
+    </header>
+
+    <div class="related-wrapper">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="iotprovision.html" title="iotprovision package"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">iotprovision  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">iotprovision documentation</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="document">
+        
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">iotprovision documentation</a><ul>
+<li><a class="reference internal" href="#python-provisioning-of-iot-kits">Python provisioning of IoT kits</a></li>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="iotprovision.html"
+                          title="next chapter">iotprovision package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+        <div class="documentwrapper">
+            <div class="bodywrapper">
+                <div class="body" role="main">
+                    
+  <section id="iotprovision-documentation">
+<h1>iotprovision documentation<a class="headerlink" href="#iotprovision-documentation" title="Permalink to this heading">¶</a></h1>
+<section id="python-provisioning-of-iot-kits">
+<h2>Python provisioning of IoT kits<a class="headerlink" href="#python-provisioning-of-iot-kits" title="Permalink to this heading">¶</a></h2>
+<p>iotprovision is a command-line utility for provisioning Microchip AVR-IoT,
+PIC-IoT and SAM-IoT kits for use with various cloud providers.</p>
+<p>It is used as a CLI.</p>
+<p>Type iotprovision –help to get help.</p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt>iotprovision is available:</dt><dd><ul class="simple">
+<li><p>install using pip from pypi: <a class="reference external" href="https://pypi.org/project/iotprovision">https://pypi.org/project/iotprovision</a></p></li>
+<li><p>browse source code on github: <a class="reference external" href="https://github.com/microchip-pic-avr-tools/iotprovision">https://github.com/microchip-pic-avr-tools/iotprovision</a></p></li>
+<li><p>read API documentation on github: <a class="reference external" href="https://microchip-pic-avr-tools.github.io/iotprovision">https://microchip-pic-avr-tools.github.io/iotprovision</a></p></li>
+<li><p>read the changelog on github: <a class="reference external" href="https://github.com/microchip-pic-avr-tools/iotprovision/blob/main/CHANGELOG.md">https://github.com/microchip-pic-avr-tools/iotprovision/blob/main/CHANGELOG.md</a></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<p>iotprovision depends on pytrustplatform, pyawsutils and pyazureutils.
+iotprovision depends on pykitcommander to manage Microchip IoT kit firmware
+and connection.
+iotprovision depends on pyedbglib for its transport protocol.
+pyedbglib requires a USB transport library like libusb.
+See pyedbglib package for more information: <a class="reference external" href="https://pypi.org/project/pyedbglib/">https://pypi.org/project/pyedbglib/</a></p>
+</section>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="iotprovision.html">iotprovision package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.aws.html">AWS provisioning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.aws.html#module-iotprovision.aws.sandbox_provision">Provisioning for AWS on Microchip sandbox account</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.aws.html#module-iotprovision.aws.custom_provision">Provisioning for AWS on custom account</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.azure.html">Azure provisioning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.azure.html#module-iotprovision.azure.custom_provision">Provisioning for Microsoft Azure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.cellular.html">Provisioning of Cellular kits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#module-iotprovision.cellular.cellularprovisioner">Cellular provisioning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#module-iotprovision.cellular.atprovisioner">Cellular provisioning using AT commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#module-iotprovision.cellular.sequans_ciphersuites">Sequans Cipher Suites</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.winc.html">WINC functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.winc.html#module-iotprovision.winc.pywinc_main">pywinc utility entry point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.winc.html#module-iotprovision.winc.winc_certs">WINC certificates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.winc.html#module-iotprovision.winc.winc_flash_map">WINC flash memory map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.winc.html#module-iotprovision.winc.wincupgrade">WINC upgrade</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#module-iotprovision.iotprovision">Provisioning main()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#module-iotprovision.provisioner">Provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner"><code class="docutils literal notranslate"><span class="pre">Provisioner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.FW_INTERFACES"><code class="docutils literal notranslate"><span class="pre">Provisioner.FW_INTERFACES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.MINIMUM_DEBUGGER_VERSION"><code class="docutils literal notranslate"><span class="pre">Provisioner.MINIMUM_DEBUGGER_VERSION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.configure_kit"><code class="docutils literal notranslate"><span class="pre">Provisioner.configure_kit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.connect"><code class="docutils literal notranslate"><span class="pre">Provisioner.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.create_root_of_trust"><code class="docutils literal notranslate"><span class="pre">Provisioner.create_root_of_trust()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.debuggerupgrade"><code class="docutils literal notranslate"><span class="pre">Provisioner.debuggerupgrade()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.disconnect"><code class="docutils literal notranslate"><span class="pre">Provisioner.disconnect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.erase_target_device"><code class="docutils literal notranslate"><span class="pre">Provisioner.erase_target_device()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.generate_certificates"><code class="docutils literal notranslate"><span class="pre">Provisioner.generate_certificates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.get_debugger_version"><code class="docutils literal notranslate"><span class="pre">Provisioner.get_debugger_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.program_application"><code class="docutils literal notranslate"><span class="pre">Provisioner.program_application()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.reboot_debugger"><code class="docutils literal notranslate"><span class="pre">Provisioner.reboot_debugger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.setup_account"><code class="docutils literal notranslate"><span class="pre">Provisioner.setup_account()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.setup_wifi"><code class="docutils literal notranslate"><span class="pre">Provisioner.setup_wifi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.store_iot_id"><code class="docutils literal notranslate"><span class="pre">Provisioner.store_iot_id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.winc_upgrade"><code class="docutils literal notranslate"><span class="pre">Provisioner.winc_upgrade()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAws"><code class="docutils literal notranslate"><span class="pre">ProvisionerAws</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAws.do_provision"><code class="docutils literal notranslate"><span class="pre">ProvisionerAws.do_provision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAws.generate_certificates"><code class="docutils literal notranslate"><span class="pre">ProvisionerAws.generate_certificates()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsJitr"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsJitr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsJitr.aws_custom_register"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsJitr.aws_custom_register()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsJitr.aws_custom_register_signeronly"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsJitr.aws_custom_register_signeronly()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsJitr.do_provision"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsJitr.do_provision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsJitr.generate_certificates"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsJitr.generate_certificates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsJitr.setup_account"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsJitr.setup_account()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsMar"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsMar</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsMar.do_provision"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsMar.do_provision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsMar.generate_certificates"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsMar.generate_certificates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAwsMar.setup_account"><code class="docutils literal notranslate"><span class="pre">ProvisionerAwsMar.setup_account()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAzure"><code class="docutils literal notranslate"><span class="pre">ProvisionerAzure</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAzure.do_provision"><code class="docutils literal notranslate"><span class="pre">ProvisionerAzure.do_provision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerAzure.generate_certificates"><code class="docutils literal notranslate"><span class="pre">ProvisionerAzure.generate_certificates()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerError"><code class="docutils literal notranslate"><span class="pre">ProvisionerError</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerGoogle"><code class="docutils literal notranslate"><span class="pre">ProvisionerGoogle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.ProvisionerGoogle.do_provision"><code class="docutils literal notranslate"><span class="pre">ProvisionerGoogle.do_provision()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.get_provisioner"><code class="docutils literal notranslate"><span class="pre">get_provisioner()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#module-iotprovision.firmwareinterface">Firmware interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ApplicationFirmwareInterface"><code class="docutils literal notranslate"><span class="pre">ApplicationFirmwareInterface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ApplicationFirmwareInterface.close"><code class="docutils literal notranslate"><span class="pre">ApplicationFirmwareInterface.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ApplicationFirmwareInterface.get_comport_handle"><code class="docutils literal notranslate"><span class="pre">ApplicationFirmwareInterface.get_comport_handle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ApplicationFirmwareInterface.get_firmware_driver"><code class="docutils literal notranslate"><span class="pre">ApplicationFirmwareInterface.get_firmware_driver()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ApplicationFirmwareInterface.open"><code class="docutils literal notranslate"><span class="pre">ApplicationFirmwareInterface.open()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.DemoFirmwareInterface"><code class="docutils literal notranslate"><span class="pre">DemoFirmwareInterface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.DemoFirmwareInterface.DEFAULT_BAUD"><code class="docutils literal notranslate"><span class="pre">DemoFirmwareInterface.DEFAULT_BAUD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.DemoFirmwareInterface.demo_fw_command"><code class="docutils literal notranslate"><span class="pre">DemoFirmwareInterface.demo_fw_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.DemoFirmwareInterface.open"><code class="docutils literal notranslate"><span class="pre">DemoFirmwareInterface.open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.DemoFirmwareInterface.read_fw_version"><code class="docutils literal notranslate"><span class="pre">DemoFirmwareInterface.read_fw_version()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.DEFAULT_BAUD"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.DEFAULT_BAUD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.ECC_SLOT_WORD_SIZE_BYTES"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.ECC_SLOT_WORD_SIZE_BYTES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.close"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.ecc_lock_slot"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.ecc_lock_slot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.ecc_read_public_key"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.ecc_read_public_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.ecc_read_serialnumber"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.ecc_read_serialnumber()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.ecc_read_slot"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.ecc_read_slot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.ecc_sign_digest"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.ecc_sign_digest()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.ecc_write_slot"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.ecc_write_slot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.enter_bridge_mode"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.enter_bridge_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.exit_bridge_mode"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.exit_bridge_mode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.get_led_status"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.get_led_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.open"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.open()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.read_fw_version"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.read_fw_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.reset"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.set_led_status"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.set_led_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.sw_reset"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.sw_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.synchronize"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.synchronize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_add_client_certificate"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_add_client_certificate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_erase_sector"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_erase_sector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_erase_tls_certificate_sector"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_erase_tls_certificate_sector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_read"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_read_fw_version"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_read_fw_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_write"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_write_endpoint_name"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_write_endpoint_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_write_thing_name"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_write_thing_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.ProvisioningFirmwareInterface.winc_write_tls_certificates_sector"><code class="docutils literal notranslate"><span class="pre">ProvisioningFirmwareInterface.winc_write_tls_certificates_sector()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.WincUpgradeFirmwareInterface"><code class="docutils literal notranslate"><span class="pre">WincUpgradeFirmwareInterface</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.WincUpgradeFirmwareInterface.DEFAULT_BAUD"><code class="docutils literal notranslate"><span class="pre">WincUpgradeFirmwareInterface.DEFAULT_BAUD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.firmwareinterface.WincUpgradeFirmwareInterface.read_fw_version"><code class="docutils literal notranslate"><span class="pre">WincUpgradeFirmwareInterface.read_fw_version()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#module-iotprovision.eccstorage">ECC storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage"><code class="docutils literal notranslate"><span class="pre">EccStorage</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.AWS_ENDPOINT"><code class="docutils literal notranslate"><span class="pre">EccStorage.AWS_ENDPOINT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.AWS_THINGNAME"><code class="docutils literal notranslate"><span class="pre">EccStorage.AWS_THINGNAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.AZURE_DEVICE_ID"><code class="docutils literal notranslate"><span class="pre">EccStorage.AZURE_DEVICE_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.AZURE_ID_SCOPE"><code class="docutils literal notranslate"><span class="pre">EccStorage.AZURE_ID_SCOPE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.AZURE_IOT_HUB_NAME"><code class="docutils literal notranslate"><span class="pre">EccStorage.AZURE_IOT_HUB_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.EMPTY"><code class="docutils literal notranslate"><span class="pre">EccStorage.EMPTY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.GOOGLE_DEVICE_ID"><code class="docutils literal notranslate"><span class="pre">EccStorage.GOOGLE_DEVICE_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.GOOGLE_PROJECT_ID"><code class="docutils literal notranslate"><span class="pre">EccStorage.GOOGLE_PROJECT_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.GOOGLE_PROJECT_REGION"><code class="docutils literal notranslate"><span class="pre">EccStorage.GOOGLE_PROJECT_REGION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.GOOGLE_REGISTRY_ID"><code class="docutils literal notranslate"><span class="pre">EccStorage.GOOGLE_REGISTRY_ID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.NUM_TYPES"><code class="docutils literal notranslate"><span class="pre">EccStorage.NUM_TYPES</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.add_provinfo_item"><code class="docutils literal notranslate"><span class="pre">EccStorage.add_provinfo_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.build_item"><code class="docutils literal notranslate"><span class="pre">EccStorage.build_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.create_write_provinfo"><code class="docutils literal notranslate"><span class="pre">EccStorage.create_write_provinfo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.read_provinfo"><code class="docutils literal notranslate"><span class="pre">EccStorage.read_provinfo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.eccstorage.EccStorage.write_provinfo_items"><code class="docutils literal notranslate"><span class="pre">EccStorage.write_provinfo_items()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#module-iotprovision.kit_config">Kit reconfiguration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.kit_config.kit_configure_disk_link"><code class="docutils literal notranslate"><span class="pre">kit_configure_disk_link()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#global-configuration">Global configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.config.Config.Config.Certs.Certs.certs_dir"><code class="docutils literal notranslate"><span class="pre">Config.Certs.Certs.certs_dir</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="iotprovision.html#module-iotprovision">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#python-provisioning-of-iot-kits">Python provisioning of IoT kits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iotprovision.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <div class="footer" role="contentinfo">
+            © Copyright 2021, Microchip Technology Inc
+        </div>
+    </div>
+  </body>
+</html>
