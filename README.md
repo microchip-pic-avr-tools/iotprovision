@@ -47,10 +47,6 @@ Provision for Amazon Web Services, using Just-In-Time Registration (JITR) and cu
 ```
 iotprovision -c aws -m jitr
 ```
-Provision for Google Cloud Platform:
-```
-iotprovision -c google
-```
 Provision for Azure:
 ```
 iotprovision -c azure

@@ -44,10 +44,6 @@ Provision for Amazon Web Services, using JITR and custom account:
 ```
 iotprovision -c aws -m jitr
 ```
-Provision for Google Cloud Platform:
-```
-iotprovision -c google
-```
 Provision for Azure:
 ```
 iotprovision -c azure

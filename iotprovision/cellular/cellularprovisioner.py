@@ -5,7 +5,6 @@ Cellular provisioning classes
 import hashlib
 import binascii
 from time import sleep
-import boto3
 from cryptography import x509
 from cryptography.hazmat.primitives import serialization
 from packaging import version
@@ -13,6 +12,7 @@ from packaging import version
 from pyawsutils.mar import aws_mar
 from pyawsutils.aws_cloudformation import MCHP_SANDBOX_ATS_ENDPOINT
 from pyawsutils.aws_ca_cert import aws_get_root_ca_cert_filename
+from pyawsutils.aws_services import get_aws_endpoint
 from pytrustplatform.ecc_cert_builder import build_certs_from_ecc
 from pytrustplatform.device_cert_builder import build_device_cert
 
@@ -318,16 +318,6 @@ class CellularProvisionerAws(CellularProvisioner):
                                 key2_value=thingname)
         self.debugger_reboot_required = True
 
-    def get_aws_endpoint(self):
-        """
-        Get AWS endpoint when custom provisioning is used
-        """
-        # FIXME: This should be in pyawsutils!
-        aws_session = boto3.session.Session(profile_name=self.aws_profile)
-        aws_iot = aws_session.client("iot")
-        return aws_iot.describe_endpoint(endpointType="iot:Data-ATS").get("endpointAddress")
-
-
 class CellularProvisionerAwsMar(ProvisionerAwsMar, CellularProvisionerAws):
     """
     AWS MAR provisioning mechanism for Cellular
@@ -353,7 +343,7 @@ class CellularProvisionerAwsMar(ProvisionerAwsMar, CellularProvisionerAws):
         aws_mar_tool.create_device(certificate_file=device_cert_file,
                                    policy_name="zt_policy", thing_type=None)
 
-        self.store_provisioning_data(thingname, self.get_aws_endpoint(), device_cert_file,
+        self.store_provisioning_data(thingname, get_aws_endpoint(aws_profile=self.aws_profile), device_cert_file,
                                      aws_get_root_ca_cert_filename("aws_ca_bundle"))
 
         self.disconnect()
@@ -393,7 +383,7 @@ class CellularProvisionerAwsJitr(ProvisionerAwsJitr, CellularProvisionerAws):
                 continue # Not the extension we're looking for, skip
             thingname = binascii.b2a_hex(extension.value.digest).decode('ascii')
 
-        self.store_provisioning_data(thingname, self.get_aws_endpoint(),
+        self.store_provisioning_data(thingname, get_aws_endpoint(aws_profile=self.aws_profile),
                                      Config.Certs.get_path("device_cert_file", self.serialnumber),
                                      aws_get_root_ca_cert_filename("aws_ca_bundle"))
 

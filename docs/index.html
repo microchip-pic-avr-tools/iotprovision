@@ -1,20 +1,16 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>iotprovision documentation &#8212; iotprovision  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/microchip.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/microchip.css?v=e28e0ba5" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="iotprovision package" href="iotprovision.html" /> 
@@ -157,6 +153,9 @@ See pyedbglib package for more information: <a class="reference external" href="
 <li class="toctree-l3"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner"><code class="docutils literal notranslate"><span class="pre">Provisioner</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.FW_INTERFACES"><code class="docutils literal notranslate"><span class="pre">Provisioner.FW_INTERFACES</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.MINIMUM_DEBUGGER_VERSION"><code class="docutils literal notranslate"><span class="pre">Provisioner.MINIMUM_DEBUGGER_VERSION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.WINC_FW_VERSION_BUNDLED"><code class="docutils literal notranslate"><span class="pre">Provisioner.WINC_FW_VERSION_BUNDLED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.check_debugger_fw"><code class="docutils literal notranslate"><span class="pre">Provisioner.check_debugger_fw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.check_winc_fw"><code class="docutils literal notranslate"><span class="pre">Provisioner.check_winc_fw()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.configure_kit"><code class="docutils literal notranslate"><span class="pre">Provisioner.configure_kit()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.connect"><code class="docutils literal notranslate"><span class="pre">Provisioner.connect()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.create_root_of_trust"><code class="docutils literal notranslate"><span class="pre">Provisioner.create_root_of_trust()</span></code></a></li>
@@ -164,7 +163,7 @@ See pyedbglib package for more information: <a class="reference external" href="
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.disconnect"><code class="docutils literal notranslate"><span class="pre">Provisioner.disconnect()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.erase_target_device"><code class="docutils literal notranslate"><span class="pre">Provisioner.erase_target_device()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.generate_certificates"><code class="docutils literal notranslate"><span class="pre">Provisioner.generate_certificates()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.get_debugger_version"><code class="docutils literal notranslate"><span class="pre">Provisioner.get_debugger_version()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.get_debugger_versions"><code class="docutils literal notranslate"><span class="pre">Provisioner.get_debugger_versions()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.program_application"><code class="docutils literal notranslate"><span class="pre">Provisioner.program_application()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.reboot_debugger"><code class="docutils literal notranslate"><span class="pre">Provisioner.reboot_debugger()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.html#iotprovision.provisioner.Provisioner.setup_account"><code class="docutils literal notranslate"><span class="pre">Provisioner.setup_account()</span></code></a></li>
@@ -314,7 +313,7 @@ See pyedbglib package for more information: <a class="reference external" href="
     </div>
     <div class="footer-wrapper">
         <div class="footer" role="contentinfo">
-            © Copyright 2021, Microchip Technology Inc
+            © Copyright 2023, Microchip Technology Inc
         </div>
     </div>
   </body>

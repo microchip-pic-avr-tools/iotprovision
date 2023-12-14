@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.12] - December 2023
+
+### Added
+- Added support for SAM-IoT WX v2
+
+### Changed
+- DSG-5726 Made handling of firmware upgrades for Sequans modem, WINC, and debugger consistent
+- DSG-5942 Root certificate update for Azure
+- DSG-6661 Updated Sequans firmware (8.0.5.13)
+- DSG-6662 Updated bundled WINC Firmware (19.7.7)
+- DSG-6854 Updated bundled debugger firmware (1.30.35)
+- DSG-5230 Google IoT Core EOL - removed support in provisioning tool
+
+### Fixed
+- DSG-5724 iotprovision does not take profile into account when doing AWS custom provisioning
+- DSG-5744 iotprovision argument --sprov does not work for wifi kits
+- DSG-6130 PEP-0440 compliance for iotprovision
+
 ## [2.10.6] - October 2022
 
 ### Changed

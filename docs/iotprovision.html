@@ -1,20 +1,16 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>iotprovision package &#8212; iotprovision  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/microchip.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/microchip.css?v=e28e0ba5" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="AWS provisioning" href="iotprovision.aws.html" />
@@ -66,6 +62,9 @@
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner"><code class="docutils literal notranslate"><span class="pre">Provisioner</span></code></a><ul>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.FW_INTERFACES"><code class="docutils literal notranslate"><span class="pre">Provisioner.FW_INTERFACES</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.MINIMUM_DEBUGGER_VERSION"><code class="docutils literal notranslate"><span class="pre">Provisioner.MINIMUM_DEBUGGER_VERSION</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.WINC_FW_VERSION_BUNDLED"><code class="docutils literal notranslate"><span class="pre">Provisioner.WINC_FW_VERSION_BUNDLED</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.check_debugger_fw"><code class="docutils literal notranslate"><span class="pre">Provisioner.check_debugger_fw()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.check_winc_fw"><code class="docutils literal notranslate"><span class="pre">Provisioner.check_winc_fw()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.configure_kit"><code class="docutils literal notranslate"><span class="pre">Provisioner.configure_kit()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.connect"><code class="docutils literal notranslate"><span class="pre">Provisioner.connect()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.create_root_of_trust"><code class="docutils literal notranslate"><span class="pre">Provisioner.create_root_of_trust()</span></code></a></li>
@@ -73,7 +72,7 @@
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.disconnect"><code class="docutils literal notranslate"><span class="pre">Provisioner.disconnect()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.erase_target_device"><code class="docutils literal notranslate"><span class="pre">Provisioner.erase_target_device()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.generate_certificates"><code class="docutils literal notranslate"><span class="pre">Provisioner.generate_certificates()</span></code></a></li>
-<li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.get_debugger_version"><code class="docutils literal notranslate"><span class="pre">Provisioner.get_debugger_version()</span></code></a></li>
+<li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.get_debugger_versions"><code class="docutils literal notranslate"><span class="pre">Provisioner.get_debugger_versions()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.program_application"><code class="docutils literal notranslate"><span class="pre">Provisioner.program_application()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.reboot_debugger"><code class="docutils literal notranslate"><span class="pre">Provisioner.reboot_debugger()</span></code></a></li>
 <li><a class="reference internal" href="#iotprovision.provisioner.Provisioner.setup_account"><code class="docutils literal notranslate"><span class="pre">Provisioner.setup_account()</span></code></a></li>
@@ -290,7 +289,6 @@
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.create_device_certs_ecc"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.create_device_certs_ecc()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.do_provision"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.do_provision()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.generate_certificates"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.generate_certificates()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.get_aws_endpoint"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.get_aws_endpoint()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="iotprovision.cellular.html#iotprovision.cellular.cellularprovisioner.CellularProvisionerAws.store_provisioning_data"><code class="docutils literal notranslate"><span class="pre">CellularProvisionerAws.store_provisioning_data()</span></code></a></li>
 </ul>
 </li>
@@ -553,6 +551,25 @@ a sub-class can be used.</p>
 <span class="sig-name descname"><span class="pre">MINIMUM_DEBUGGER_VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'1.15.479'</span></em><a class="headerlink" href="#iotprovision.provisioner.Provisioner.MINIMUM_DEBUGGER_VERSION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iotprovision.provisioner.Provisioner.WINC_FW_VERSION_BUNDLED">
+<span class="sig-name descname"><span class="pre">WINC_FW_VERSION_BUNDLED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'19.7.7'</span></em><a class="headerlink" href="#iotprovision.provisioner.Provisioner.WINC_FW_VERSION_BUNDLED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.provisioner.Provisioner.check_debugger_fw">
+<span class="sig-name descname"><span class="pre">check_debugger_fw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.provisioner.Provisioner.check_debugger_fw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the installed debugger FW version against bundled FW, print advice</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="iotprovision.provisioner.Provisioner.check_winc_fw">
+<span class="sig-name descname"><span class="pre">check_winc_fw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">advise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.provisioner.Provisioner.check_winc_fw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if Winc firmware needs upgrading
+:param advise: Print warning/info messages about FW upgrade recommended
+:return: True if installed version is outdated</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="iotprovision.provisioner.Provisioner.configure_kit">
 <span class="sig-name descname"><span class="pre">configure_kit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_programming</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.provisioner.Provisioner.configure_kit" title="Permalink to this definition">¶</a></dt>
@@ -625,9 +642,9 @@ a sub-class can be used.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="iotprovision.provisioner.Provisioner.get_debugger_version">
-<span class="sig-name descname"><span class="pre">get_debugger_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.provisioner.Provisioner.get_debugger_version" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get debugger version installed on selected kit.</p>
+<dt class="sig sig-object py" id="iotprovision.provisioner.Provisioner.get_debugger_versions">
+<span class="sig-name descname"><span class="pre">get_debugger_versions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iotprovision.provisioner.Provisioner.get_debugger_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get debugger version installed on selected kit, and bundled version.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -695,6 +712,9 @@ Terminology varies among cloud providers, e.g. Thing Name for AWS or Device ID f
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>force_upgrade</strong> (<em>boolean</em>) – perform the upgrade regardless of the current version</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if WINC software is upgraded</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1792,7 +1812,7 @@ See pyedbglib package for more information: <a class="reference external" href="
     </div>
     <div class="footer-wrapper">
         <div class="footer" role="contentinfo">
-            © Copyright 2021, Microchip Technology Inc
+            © Copyright 2023, Microchip Technology Inc
         </div>
     </div>
   </body>

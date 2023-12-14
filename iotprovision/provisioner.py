@@ -23,9 +23,15 @@ from pykitcommander.kitprotocols import setup_kit
 
 from .config import Config
 from .kit_config import kit_configure_disk_link
-from .version import VERSION
 from .winc.wincupgrade import WincUpgrade
 from .winc.winc_flash_map import FlashMap
+try:
+    from . import __version__ as VERSION
+    from . import BUILD_DATE, COMMIT_ID
+except ImportError:
+    VERSION = "0.0.0"
+    COMMIT_ID = "N/A"
+    BUILD_DATE = "N/A"
 
 from .firmwareinterface import ProvisioningFirmwareInterface, WincUpgradeFirmwareInterface, DemoFirmwareInterface
 
@@ -110,6 +116,9 @@ class Provisioner():
 
     # Absolute minimum debugger version required for provisioning to work
     MINIMUM_DEBUGGER_VERSION = "1.15.479"
+    # Version of WINC firmware bundled in
+    WINC_FW_VERSION_BUNDLED = "19.7.7"
+
 
     def __init__(self, programmer, skip_program_provision_fw=False, port=None,
                  installdir=os.path.abspath(os.path.dirname(__file__))):
@@ -265,12 +274,27 @@ class Provisioner():
         """
         self.programmer.reboot()
 
-    def get_debugger_version(self):
+    def get_debugger_versions(self):
         """
-        Get debugger version installed on selected kit.
+        Get debugger version installed on selected kit, and bundled version.
         """
         backend = Backend()
-        return backend.get_current_version("nedbg", self.serialnumber)
+        nedbg_fw = os.path.join(self.installdir, "fw", "nedbg_fw.zip")
+        return (backend.get_current_version("nedbg", self.serialnumber),
+                backend.resolve_source_version(nedbg_fw))
+
+    def check_debugger_fw(self):
+        """
+        Check the installed debugger FW version against bundled FW, print advice
+        """
+        (installed_version, bundled_version) = self.get_debugger_versions()
+        self.logger.debug("Installed debugger: %s, Bundled debugger: %s", installed_version, bundled_version)
+        if version_parse(installed_version) < version_parse(bundled_version):
+            self.logger.info(80 * '*')
+            self.logger.warning("Consider upgrading debugger firmware, using command 'iotprovision debuggerupgrade'")
+            self.logger.info("Installed version: %s, Current version: %s",
+                             installed_version, bundled_version)
+            self.logger.info(80 * '*')
 
     def debuggerupgrade(self, tool):
         """
@@ -356,7 +380,7 @@ class Provisioner():
 
             fw_wifi_config_arguments = [ssid, psk, WIFI_AUTHS[auth]]
             response = self.fwinterface.demo_fw_command("wifi", fw_wifi_config_arguments)
-            if not response.startswith("OK"):
+            if not "OK" in response:
                 self.logger.error("Unexpected response from FW: %s", response)
                 raise ProvisionerError("WiFi setup failed - unexpected response from application")
         except Exception as e:
@@ -365,35 +389,54 @@ class Provisioner():
         finally:
             self.disconnect()
 
+    def _winc_upgrade_advisor(self, installed_version, driver_version):
+        """
+        Advisor for WINC FW upgrade, considering different log verbosity levels.
+        """
+        self.logger.info(80 * '*')
+        self.logger.warning("Consider upgrading WINC1500 firmware, using command 'iotprovision wincupgrade'")
+        self.logger.info("Installed version: %s (driver %s), Current version: %s",
+                         installed_version, driver_version, self.WINC_FW_VERSION_BUNDLED)
+        self.logger.info(80 * '*')
+
+    def check_winc_fw(self, advise=False):
+        """
+        Check if Winc firmware needs upgrading
+        :param advise: Print warning/info messages about FW upgrade recommended
+        :return: True if installed version is outdated
+        """
+        # Setup provisioning firmware
+        self.connect("iotprovision", self.skip_program_provision_fw)
+
+        winc_fw_version, winc_driver_version = self.fwinterface.winc_read_fw_version()
+        self.logger.debug("WINC FW installed: %s (driver %s), bundled: %s", winc_fw_version,
+                         winc_driver_version, self.WINC_FW_VERSION_BUNDLED)
+        if version_parse(winc_fw_version) < version_parse(self.WINC_FW_VERSION_BUNDLED):
+            if advise:
+                self._winc_upgrade_advisor(winc_fw_version, winc_driver_version)
+            return True
+
+        return False
+
     def winc_upgrade(self, force_upgrade=False):
         """
         Upgrade the WINC1500 module using the bundled firmware
 
         :param force_upgrade: perform the upgrade regardless of the current version
         :type force_upgrade: boolean
+        :return: True if WINC software is upgraded
         """
-        # Bundled FW is:
-        WINC_FW_VERSION_BUNDLED = "19.7.6"
-        bin_file_name = os.path.join(self.installdir, "fw/winc/WINC1500_{0:s}.bin".format(WINC_FW_VERSION_BUNDLED))
+        bin_file_name = os.path.join(self.installdir, "fw/winc/WINC1500_{0:s}.bin".format(self.WINC_FW_VERSION_BUNDLED))
 
         # Bundled certificates:
         tls_root_certs_file_name = os.path.join(self.installdir, "fw/winc/tls_root_cert.bin")
 
         # First check if its there already using the bridge that is in place, if there is one...
-        if not force_upgrade:
-            # Setup provisioning firmware
-            self.connect("iotprovision")
-
-            self.logger.info("Querying current WINC firmware version")
-            winc_fw_version, winc_driver_version = self.fwinterface.winc_read_fw_version()
-            self.logger.info("WINC firmware version: %s", winc_fw_version)
-            self.logger.info("WINC driver version: %s", winc_driver_version)
-
-            if version_parse(winc_fw_version) >= version_parse(WINC_FW_VERSION_BUNDLED):
-                self.logger.info("WINC firmware is already up to date.")
-                self.logger.info("Skipping upgrade.")
-                self.disconnect()
-                return
+        if not (force_upgrade or self.check_winc_fw()):
+            self.logger.info("WINC1500 firmware version %s is already up to date.",
+                             self.fwinterface.winc_read_fw_version()[0])
+            self.logger.info("Skipping upgrade.")
+            return False
 
         # First check that we have a file and its readable
         with open(bin_file_name, "rb") as file:
@@ -403,7 +446,7 @@ class Provisioner():
         with open(tls_root_certs_file_name, "rb") as file:
             tls_root_certificate_data = file.read()
             length = len(tls_root_certificate_data)
-            assert(length <= FlashMap.sector_size)  # This should never happen
+            assert length <= FlashMap.sector_size  # This should never happen
             # The file produced by pywinc can be smaller than one sector, this API
             # requires exactly one sector, so extend it.
             tls_root_certificate_data += bytes([0xff] * (FlashMap.sector_size - length))
@@ -433,11 +476,11 @@ class Provisioner():
                     # TODO: is this required?
                     #upgrader.reset()
 
-            if version_parse(current_version) >= version_parse(WINC_FW_VERSION_BUNDLED) and not force_upgrade:
+            if version_parse(current_version) >= version_parse(self.WINC_FW_VERSION_BUNDLED) and not force_upgrade:
                 self.logger.info("WINC firmware is already up to date.")
                 self.logger.info("Skipping upgrade.")
             else:
-                self.logger.info("Starting WINC firmware upgrade to version %s", WINC_FW_VERSION_BUNDLED)
+                self.logger.info("Starting WINC firmware upgrade to version %s", self.WINC_FW_VERSION_BUNDLED)
 
                 # Do the upgrade
                 upgrader.upgrade_full_image(full_image_data)
@@ -460,7 +503,7 @@ class Provisioner():
         finally:
             # Restore provisioning firmware
             self.connect("iotprovision")
-
+        return True
 
 class ProvisionerAzure(Provisioner):
     """
@@ -727,7 +770,8 @@ class ProvisionerAwsMar(ProvisionerAws):
             Config.Certs.get_path("signer_ca_cert_file"),
             Config.Certs.get_path("device_csr_file", self.serialnumber),
             device_cert_file,
-            force_new_device_certificate)
+            force_new_device_certificate,
+            self.aws_profile_name)
 
         thingname = self._aws_provision(provider_provisioner, skip_program_provision_firmware)
 
@@ -770,7 +814,7 @@ class ProvisionerAwsJitr(ProvisionerAws):
         :type force_setup: boolean
         """
         self.logger.info("AWS JITR account registration")
-        setup_aws_jitr_account(force=force_setup)
+        setup_aws_jitr_account(force=force_setup, aws_profile=profile_name)
         self.aws_profile_name = profile_name
 
     def generate_certificates(self, force, organization_name, root_common_name, signer_common_name):
@@ -848,7 +892,8 @@ class ProvisionerAwsJitr(ProvisionerAws):
             Config.Certs.get_path("signer_ca_cert_file"),
             Config.Certs.get_path("device_csr_file", self.serialnumber),
             device_cert_file,
-            force_new_device_certificate)
+            force_new_device_certificate,
+            self.aws_profile_name)
 
         thingname = self._aws_provision(provider_provisioner, skip_program_provision_firmware)
 

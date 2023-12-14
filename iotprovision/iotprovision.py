@@ -29,8 +29,16 @@ from .cellular.cellularprovisioner import DEFAULT_CELLULAR_PROVIDER, CELLULAR_VA
 from .cellular.sequans_ciphersuites import DEFAULT_CIPHERSUITES, print_ciphersuites
 from .deprecated import deprecated
 
+try:
+    from . import __version__ as VERSION
+    from . import BUILD_DATE, COMMIT_ID
+except ImportError:
+    VERSION = "0.0.0"
+    COMMIT_ID = "N/A"
+    BUILD_DATE = "N/A"
+
 # Supported cloud providers
-CLOUD_PROVIDERS = ["google", "aws", "azure"]
+CLOUD_PROVIDERS = ["aws", "azure"]
 
 ROOTCERTS_HELP = """
 Action 'rootcerts' is used to manage root certificate storage in WINC flash.
@@ -153,7 +161,7 @@ def main():
     # (ACTIONS_DEFAULT) directly as default, and None doesn't work.
     ACTIONS_ALL = ["account", "debuggerupgrade", "wincupgrade", "rootcerts", "certs", "provision", "application", []]
     # Action(s) to be performed by default (ie if none are explicitly specified)
-    ACTIONS_DEFAULT = ["account", "wincupgrade", "certs", "provision", "application"]
+    ACTIONS_DEFAULT = ["account", "certs", "provision", "application"]
 
     ### The following is to help determine if cloud provider must be specified or not.
     # Provisioning actions needing cloud provider to be specified
@@ -161,7 +169,7 @@ def main():
     # Options/arguments that will just print something and exit, not requiring cloud provider
     PRINT_ARGS = ["--help", "-h", "help", "-V", "--version", "-R", "--release-info"]
 
-    parser = argparse.ArgumentParser(description="Provision an AVR-IoT, PIC-IoT or SAM-IoT kit for a cloud provider",
+    parser = argparse.ArgumentParser(description="Provision an AVR-IoT, PIC-IoT, AVR-IoT Cellular Mini or SAM-IoT kit for a cloud provider",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     # Action(s) to perform.
     parser.add_argument("actions", nargs="*", choices=ACTIONS_ALL,
@@ -335,17 +343,12 @@ def print_version_info(args):
     Print version and related info from version.py
     Existence of version.py requires wheel is built
     """
-    try:
-        from . import version
-        print("{} version {}".format(os.path.basename(sys.argv[0]), version.VERSION))
-        if args.release_info:
-            print("Build date:  {}".format(version.BUILD_DATE))
-            print("Commit ID:   {}".format(version.COMMIT_ID))
-            print("Installed in {}".format(args._installdir))
-        return STATUS_SUCCESS
-    except Exception as e:
-        return "Could not retrieve version: {}".format(e)
-
+    print("{} version {}".format(os.path.basename(sys.argv[0]), VERSION))
+    if args.release_info:
+        print("Build date:  {}".format(BUILD_DATE))
+        print("Commit ID:   {}".format(COMMIT_ID))
+        print("Installed in {}".format(args._installdir))
+    return STATUS_SUCCESS
 
 if __name__ == '__main__':
     sys.exit(main())

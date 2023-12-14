@@ -17,7 +17,7 @@ import mock
 from pykitcommander.kitcommandererrors import KitConnectionError, KitCommunicationError
 
 from iotprovision.iotprovision import main
-from iotprovision.version import VERSION
+from iotprovision import __version__ as VERSION
 from iotprovision.provisioner import Provisioner
 from iotprovision.config import Config
 
@@ -63,7 +63,7 @@ class TestIotprovisionCli(unittest.TestCase):
         mock_provisioneraws_inst = mock_provisioneraws.return_value
         # Just pretent everything went well with the provisioning
         mock_provisioneraws_inst.MINIMUM_DEBUGGER_VERSION = "1.15.479"
-        mock_provisioneraws_inst.get_debugger_version.return_value = "1.22.73"
+        mock_provisioneraws_inst.get_debugger_versions.return_value = ("1.22.73", "1.25.116")
         mock_provisioneraws_inst.setup_account.return_value = STATUS_SUCCESS
         mock_provisioneraws_inst.debuggerupgrade.return_value = STATUS_SUCCESS
         mock_provisioneraws_inst.winc_upgrade.return_value = STATUS_SUCCESS

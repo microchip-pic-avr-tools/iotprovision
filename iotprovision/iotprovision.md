@@ -8,6 +8,7 @@ iotprovision is a utility for provisioning Microchip IoT kits for use with vario
 - PIC-IOT WG
 - AVR-IOT WA
 - PIC-IOT WA
+- AVR-IOT Cellular Mini
 
 ## Supported cloud services providers
 - Google Cloud Platform

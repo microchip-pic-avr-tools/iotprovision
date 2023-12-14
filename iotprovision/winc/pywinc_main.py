@@ -10,7 +10,7 @@ from .wincupgrade import WincUpgradeBridgeLink, WincUpgrade
 from .winc_flash_map import FlashMap
 from .winc_certs import ClientCertStorage, RootCertStorage
 
-PYWINC_VERSION = "1.0.0"    # FIXME where to define this?
+PYWINC_VERSION = "1.1.0"    # FIXME where to define this?
 
 STATUS_ERROR = 1
 STATUS_SUCCESS = 0

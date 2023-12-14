@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'iotprovision'
-copyright = '2021, Microchip Technology Inc'
+copyright = '2023, Microchip Technology Inc'
 author = 'Microchip Technology Inc'
 
 
@@ -42,7 +42,7 @@ exclude_patterns = []
 
 # Mock out these objects (note: modules, not packages)
 autodoc_mock_imports = ['pyedbglib', 'pydebuggerconfig', 'pydebuggerupgrade', 'pykitcommander', 'pytrustplatform', 'pyawsutils', 'pykitinfo', 'pysequansutils', 'intelhex', 'appdirs',
-    'yaml', 'serial', 'boto3', 'botocore', 'cryptography', 'pyOpenSSL', 'jose', 'pytz', 'requests']
+    'yaml', 'serial', 'botocore', 'cryptography', 'pyOpenSSL', 'jose', 'pytz', 'requests']
 
 # -- Options for HTML output -------------------------------------------------
 

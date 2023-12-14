@@ -74,13 +74,15 @@ def iotprovision(args):
 
         # If user specifies debugger upgrade, do so if bundled version is newer than current,
         # otherwise only upgrade if current is older than absolute minimum required version
-        debugger_version = provisioner.get_debugger_version()
+        debugger_version, _ = provisioner.get_debugger_versions()
         if "debuggerupgrade" in args.actions or \
            version.parse(debugger_version) < version.parse(provisioner.MINIMUM_DEBUGGER_VERSION):
             logger.info("\nCheck if debugger firmware (%s) needs upgrade...", debugger_version)
             logger.debug("Current debugger version is: %s, absolute minimum required is %s",
                          debugger_version, provisioner.MINIMUM_DEBUGGER_VERSION)
             provisioner.debuggerupgrade(tool)
+        else:
+            provisioner.check_debugger_fw()
 
         if "wincupgrade" in args.actions:
             if iscellular(kit_name):
@@ -88,6 +90,9 @@ def iotprovision(args):
             else:
                 logger.info("\nCheck if WINC firmware needs upgrade...")
                 provisioner.winc_upgrade(args.force_wincupgrade)
+        elif not iscellular(kit_name):
+            # Check WINC firmware version, advise if out of date.
+            provisioner.check_winc_fw(advise=True)
 
         if "rootcerts" in args.actions:
             if iscellular(kit_name):

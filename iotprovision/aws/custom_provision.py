@@ -7,12 +7,12 @@ It is intended to be invoked from iotprovison, but can also be run stand-alone.
 import os
 import binascii
 from logging import getLogger
-import boto3
 from cryptography import x509
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
 
 from pytrustplatform.device_cert_builder import build_device_cert
+from pyawsutils.aws_services import get_aws_endpoint
 
 
 class AwsCustomProvisioner:
@@ -29,9 +29,11 @@ class AwsCustomProvisioner:
     :type device_cert_file: str (path)
     :param force_new_device_certificate: Force creation of new device certificate even if it exists already
     :type force_new_device_certificate: boolean, optional
+    :param aws_profile: Name of profile to use, defaults to 'default'
+    :type aws_profile: str, optional
     """
     def __init__(self, signer_ca_key_file, signer_ca_cert_file, device_csr_file,
-                 device_cert_file, force_new_device_certificate=False):
+                 device_cert_file, force_new_device_certificate=False, aws_profile='default'):
         self.logger = getLogger(__name__)
         # Setup cryptography backend
         self.crypto_be = default_backend()
@@ -40,6 +42,7 @@ class AwsCustomProvisioner:
         self.device_csr_file = device_csr_file
         self.device_cert_file = device_cert_file
         self.force_new_device_certificate = force_new_device_certificate
+        self.aws_profile = aws_profile
 
     def provision(self, fwinterface):
         """
@@ -53,10 +56,7 @@ class AwsCustomProvisioner:
         :return: "Thing name" (Subject Key Identifier) if successful, else None
         :rtype: str
         """
-        # Get endpoint from AWS
-        iot_client = boto3.client('iot')
-        response = iot_client.describe_endpoint()
-        aws_endpoint_address = response['endpointAddress']
+        aws_endpoint_address = get_aws_endpoint(aws_profile=self.aws_profile)
 
         self.logger.info("Loading Signer CA certificate")
         with open(self.signer_ca_cert_file, 'rb') as certfile:
